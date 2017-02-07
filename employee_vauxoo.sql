@@ -36,7 +36,6 @@ CREATE TABLE employee_hobby (
 );
 
 CREATE TABLE employee_employee_hobby (
-	id serial NOT NULL PRIMARY KEY,
 	employee_id integer NOT NULL REFERENCES employee,
 	employee_hobby_id integer NOT NULL REFERENCES employee_hobby,
 	UNIQUE (employee_id, employee_hobby_id)

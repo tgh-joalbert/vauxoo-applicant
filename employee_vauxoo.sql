@@ -29,4 +29,26 @@ INSERT INTO employee (first_name, last_name, employee_department_id) VALUES ('li
 INSERT INTO employee (first_name, last_name, employee_department_id) VALUES ('marina', 'gonzalez', 4);
 INSERT INTO employee (first_name, last_name, employee_department_id) VALUES ('debby', 'orozco', 4);
 
+CREATE TABLE employee_hobby (
+	id serial NOT NULL PRIMARY KEY,
+	name character varying,
+	description text
+);
+
+CREATE TABLE employee_employee_hobby (
+	id serial NOT NULL PRIMARY KEY,
+	employee_id integer NOT NULL REFERENCES employee,
+	employee_hobby_id integer NOT NULL REFERENCES employee_hobby,
+	UNIQUE (employee_id, employee_hobby_id)
+);
+
+INSERT INTO employee_hobby (name, description) VALUES ('photography', 'photography hobby');
+INSERT INTO employee_hobby (name, description) VALUES ('fishing', 'fishing hobby');
+INSERT INTO employee_hobby (name, description) VALUES ('camping', 'camping hobby');
+
+INSERT INTO employee_employee_hobby (employee_id, employee_hobby_id) VALUES (1, 2), (1, 3);
+INSERT INTO employee_employee_hobby (employee_id, employee_hobby_id) VALUES (2, 1), (2, 2);
+INSERT INTO employee_employee_hobby (employee_id, employee_hobby_id) VALUES (3, 2), (3, 3);
+INSERT INTO employee_employee_hobby (employee_id, employee_hobby_id) VALUES (4, 1), (4, 3);
+
 -- ...
